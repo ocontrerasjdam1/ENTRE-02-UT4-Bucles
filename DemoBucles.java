@@ -1,17 +1,18 @@
+import java.util.Random;
 /**
- *    @author - 
+ *    @author Oskar Contreras Junguitu 
  */
 public class DemoBucles
 {
     private final char ASTERISCO = '*';
     private final char ESPACIO = ' ';
-
+    private Random generador;
     /**
      * Constructor  
      */
     public DemoBucles()
     {
-       
+        generador = new Random();
     }
 
     /**
@@ -26,9 +27,11 @@ public class DemoBucles
      *  Usa bucles while
      */
     public int mayorPotencia2(int numero) {
-        
-        return 0;
-
+        int potencia = 1;
+        while((potencia * 2) <= numero){
+            potencia *= 2;
+        }
+        return potencia;
     }
 
     /**
@@ -47,9 +50,16 @@ public class DemoBucles
      *  64 =    64
      */
     public void escribirSumaPotencias(int numero) {
+        int potencia = mayorPotencia2(numero);
+        System.out.println("\n");
+        System.out.printf("%6s",numero + " =");
+        System.out.printf("%6d",potencia );
+        while(numero > potencia){
+            numero -= potencia;
+            potencia = mayorPotencia2(numero);
+            System.out.printf("%6d",potencia);
 
-         
-
+        }
     }
 
     /**
@@ -65,8 +75,6 @@ public class DemoBucles
      */
     public void generarAleatorios(int n) {
 
-       
-
     }
 
     /**
@@ -76,7 +84,10 @@ public class DemoBucles
      */
     public void escribirCaracter(int n, char caracter)
     {
-         
+        Utilidades.borrarPantalla();
+        for(int i = 1; i <= n; i++){
+            System.out.print(caracter);
+        }
     }
 
     /**
@@ -86,10 +97,19 @@ public class DemoBucles
      *   Usa bucles for
      */
     public  void mostrarEscalera(int escalones, int alto, int ancho) {
-        System.out.println();
-
-         
-
+        for(int cantidadEscalones = 0; cantidadEscalones < escalones; 
+        cantidadEscalones++){
+            for(int cantidadAlto = 1; cantidadAlto <= alto; cantidadAlto++){
+                System.out.print("\n");
+                for(int cantidadEspacio = 1; cantidadEspacio <= 
+                (ancho * cantidadEscalones); cantidadEspacio++){
+                    System.out.print(ESPACIO);
+                }
+                escribirCaracter(ancho, ASTERISCO);
+            }
+        }
     }
-
 }
+
+
+
